@@ -13,6 +13,7 @@ logging.getLogger().setLevel(logging.INFO)
 
 from kivy.app import App
 from kivy.uix.widget import Widget
+from kivy.properties import ObjectProperty
 
 from iotUserClient.popups.credentials import CredentialsDialog
 import iotUserClient.attiotuserclient as IOT
@@ -21,6 +22,9 @@ import gateway
 
 
 class MainWindow(Widget):
+    mainMenu = ObjectProperty()
+    screenMenu = ObjectProperty()
+    screens = ObjectProperty()
     def __init__(self, **kwargs):
         self.data = None
         super(MainWindow, self).__init__(**kwargs)

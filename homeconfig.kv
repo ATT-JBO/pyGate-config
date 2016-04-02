@@ -191,11 +191,15 @@
         size_hint: 1, 1
 
 <MainWindow>:
+    mainMenu: actGrp
+    screenMenu: actbar
+    screens: sm
     BoxLayout:
         size: root.size
         pos: root.pos
         orientation: 'vertical'
         ActionBar:
+            id: actbar
             size_hint: 1, None
             ActionView:
                 use_separator: True
@@ -207,23 +211,26 @@
                         markup: True
                         text: 'Credentials'
                         on_press: root.editCredentials()
-                ActionButton:
-                    markup: True
-                    text: 'Gateway'
-                    on_release: sm.current = 'gateways'
-                ActionButton:
-                    markup: True
-                    text: 'Devices'
-                    on_release: sm.current = 'devices'
-                ActionButton:
-                    markup: True
-                    text: 'groups'
-                    on_release: sm.current = 'groups'
+                ActionGroup:
+                    text: 'Plug-ins'
+                    id: actGrp
+                    ActionButton:
+                        markup: True
+                        text: 'Gateway'
+                        on_release: sm.current = 'gateways'
+                    ActionButton:
+                        markup: True
+                        text: 'Devices'
+                        on_release: sm.current = 'devices'
+                    #ActionButton:
+                    #    markup: True
+                    #    text: 'groups'
+                    #    on_release: sm.current = 'groups'
         ScreenManager:
             id: sm
             GatewaysScreen:
                 name: 'gateways'
             DevicesScreen:
                 name: 'devices'
-            GroupsScreen:
-                name: 'groups'
+            #GroupsScreen:
+            #    name: 'groups'
