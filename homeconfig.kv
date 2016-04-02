@@ -1,0 +1,229 @@
+#:kivy 1.9.1
+#:import data gateway.data
+
+<GatewaysScreen>:
+    Accordion:
+        orientation: 'vertical'
+        AccordionItem:
+            title: 'general'
+            GridLayout:
+                rows: 3
+                padding: '8dp'
+                spacing: '8dp'
+                StackLayout:
+                    orientation: 'rl-tb'
+                    size_hint_y: None
+                    height: '24dp'
+                    spacing: '8dp'
+                    Button:
+                        size_hint: None, None
+                        height:'24dp'
+                        width:'24dp'
+                        text: 'd'
+                    Button:
+                        size_hint: None, None
+                        height:'24dp'
+                        width:'24dp'
+                        text: 'r'
+                Label:
+                    markup: True
+                    size_hint_y: None
+                    halign: 'left'
+                    text_size: self.width, None
+                    height:'24dp'
+                    text: '[i]Zwave:[/i]'
+                    underline: True
+                GridLayout:
+                    cols: 2
+                    rows: 3
+                    spacing: '8dp'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: '80dp', 0, 0, 0
+                    Label:
+                        size_hint_y: None
+                        halign: 'right'
+                        text_size: self.width, None
+                        height:'32dp'
+                        text: 'device state: '
+                    Label:
+                        size_hint_y: None
+                        text_size: self.width, None
+                        halign: 'left'
+                        height:'32dp'
+                        text: 'all queried'
+                    Label:
+                        size_hint_y: None
+                        text_size: self.width, None
+                        halign: 'right'
+                        height:'32dp'
+                        text: 'network state: '
+                    Label:
+                        size_hint_y: None
+                        text_size: self.width, None
+                        halign: 'left'
+                        height:'32dp'
+                        text: 'ready'
+                    Label:
+                        size_hint_y: None
+                        text_size: self.width, None
+                        halign: 'right'
+                        height:'32dp'
+                        text: 'controller state: '
+                    Label:
+                        size_hint_y: None
+                        text_size: self.width, None
+                        halign: 'left'
+                        height:'32dp'
+                        text: 'completed'
+        AccordionItem:
+            title: 'devices'
+            GridLayout:
+                rows: 3
+                padding: '8dp'
+                spacing: '8dp'
+                Label:
+                    markup: True
+                    size_hint_y: None
+                    halign: 'left'
+                    text_size: self.width, None
+                    height:'24dp'
+                    text: '[i]Zwave:[/i]'
+                    underline: True
+                BoxLayout:
+                    spacing: '8dp'
+                    size_hint_y: None
+                    height: '32dp'
+                    padding: '80dp', 0, 0, 0
+                    Button:
+                        size_hint_y: None
+                        height:'32dp'
+                        text: 'Include'
+                    Button:
+                        size_hint_y: None
+                        height:'32dp'
+                        text: 'Exclude'
+                    Button:
+                        size_hint_y: None
+                        height:'32dp'
+                        text: 'Stop'
+                        disabled: True
+                Label:
+                    markup: True
+                    size_hint_y: None
+                    halign: 'center'
+                    text_size: self.width, None
+                    height:'24dp'
+                    text: 'Last included device: [i]none[/i]'
+        AccordionItem:
+            title: 'reset'
+            GridLayout:
+                rows: 2
+                padding: '8dp'
+                spacing: '8dp'
+                Label:
+                    markup: True
+                    size_hint_y: None
+                    halign: 'left'
+                    text_size: self.width, None
+                    height:'24dp'
+                    text: '[i]Zwave:[/i]'
+                    underline: True
+                BoxLayout:
+                    spacing: '8dp'
+                    size_hint_y: None
+                    height: '32dp'
+                    padding: '80dp', 0, 0, 0
+                    Button:
+                        size_hint_y: None
+                        height:'32dp'
+                        text: 'Soft reset'
+                    Button:
+                        size_hint_y: None
+                        height:'32dp'
+                        text: 'hard reset'
+        AccordionItem:
+            title: 'add gateway'
+            GridLayout:
+                cols: 2
+                padding: '8dp'
+                spacing: '8dp'
+                TextInput:
+                    size_hint_y: None
+                    height:'32dp'
+                    write_tab: False
+                    hint_text: 'claim code'
+                Button:
+                    size_hint: None, None
+                    height:'32dp'
+                    width: '80dp'
+                    text: 'claim'
+
+
+<GroupsScreen>:
+    ScrollView:
+        size_hint: 1, 1
+        StackLayout:
+            id: workspace_layout
+            orientation: 'tb-lr'
+            size_hint: 1, None
+            pos_hint: {'x': 0, 'y': 0}
+            padding: '10dp'
+            spacing: '20dp'
+            height: self.minimum_height
+            BoxLayout:
+                spacing: '8dp'
+                size_hint: 1, None
+                height: '72dp'
+                orientation: 'vertical'
+                TextInput:
+                    size_hint_y: None
+                    height:'32dp'
+                    write_tab: False
+                    hint_text: 'name of group'
+                Button:
+                    size_hint_y: None
+                    height:'32dp'
+                    text: 'add new group'
+
+<DevicesScreen>:
+    ScrollView:
+        size_hint: 1, 1
+
+<MainWindow>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'vertical'
+        ActionBar:
+            size_hint: 1, None
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    title: 'Home config'
+                    with_previous: False
+                ActionOverflow:
+                    ActionButton:
+                        markup: True
+                        text: 'Credentials'
+                        on_press: root.editCredentials()
+                ActionButton:
+                    markup: True
+                    text: 'Gateway'
+                    on_release: sm.current = 'gateways'
+                ActionButton:
+                    markup: True
+                    text: 'Devices'
+                    on_release: sm.current = 'devices'
+                ActionButton:
+                    markup: True
+                    text: 'groups'
+                    on_release: sm.current = 'groups'
+        ScreenManager:
+            id: sm
+            GatewaysScreen:
+                name: 'gateways'
+            DevicesScreen:
+                name: 'devices'
+            GroupsScreen:
+                name: 'groups'
