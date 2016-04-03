@@ -192,6 +192,7 @@
 
 <MainWindow>:
     mainMenu: actGrp
+    gatewaysMenu: actGrpGateways
     screenMenu: actbar
     screens: sm
     BoxLayout:
@@ -212,20 +213,23 @@
                         text: 'Credentials'
                         on_press: root.editCredentials()
                 ActionGroup:
+                    text: 'gateways'
+                    id: actGrpGateways
+                ActionGroup:
                     text: 'Plug-ins'
                     id: actGrp
                     ActionButton:
                         markup: True
                         text: 'Gateway'
-                        on_release: sm.current = 'gateways'
+                        on_press: sm.current = 'gateways'
                     ActionButton:
                         markup: True
                         text: 'Devices'
-                        on_release: sm.current = 'devices'
+                        on_press: sm.current = 'devices'
                     #ActionButton:
                     #    markup: True
                     #    text: 'groups'
-                    #    on_release: sm.current = 'groups'
+                    #    on_press: sm.current = 'groups'
         ScreenManager:
             id: sm
             GatewaysScreen:

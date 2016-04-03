@@ -12,8 +12,6 @@ from kivy.uix.screenmanager import Screen
 class GatewaysScreen(Screen):
     pass
 
-class GroupsScreen(Screen):
-    pass
 
 class DevicesScreen(Screen):
     pass

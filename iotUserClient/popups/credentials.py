@@ -72,6 +72,7 @@ class Credentials():
         self.password = ''
         self.server = ''
         self.broker = ''
+        self.secure = False
 
     def isDefined(self):
         '''returns true if all fields are filled in'''

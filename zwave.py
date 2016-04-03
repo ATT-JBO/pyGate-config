@@ -18,3 +18,8 @@ class ZWave:
 
     def getReset(self):
         pass
+
+
+def getProtocolManager():
+    """callback function for this plugin"""
+    return ZWave()
